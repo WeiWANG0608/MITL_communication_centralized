@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>int w;
+chan p1,np1;
+bool veri1;
+</declaration>
+	<template>
+		<name>TA</name>
+		<declaration>int cl1,cy1;</declaration>
+		<location id="id0" x="100" y="150">
+			<name x="100" y="122">l1</name>
+		</location>
+		<location id="id1" x="0" y="0">
+			<name x="0" y="-28">l0</name>
+		</location>
+		<init ref="id1"/>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id0"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="35" y="61">np1?</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="synchronisation" x="35" y="61">p1?</label>
+			<label kind="assignment" x="35" y="75">veri1:=(w&gt;=40&amp;&amp; w&lt;=45)? true: false</label>
+		</transition>
+	</template>
+	<template>
+		<name>WTS</name>
+		<location id="id2" x="1000" y="600">
+			<name x="1000" y="572">w5</name>
+		</location>
+		<location id="id3" x="1000" y="400">
+			<name x="1000" y="372">w4</name>
+		</location>
+		<location id="id4" x="800" y="600">
+			<name x="800" y="572">w3</name>
+		</location>
+		<location id="id5" x="800" y="400">
+			<name x="800" y="372">w2</name>
+		</location>
+		<location id="id6" x="600" y="600">
+			<name x="600" y="572">w1</name>
+		</location>
+		<location id="id7" x="600" y="400">
+			<name x="600" y="372">w0</name>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="585" y="486">p1!</label>
+			<label kind="assignment" x="585" y="500">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="685" y="386">p1!</label>
+			<label kind="assignment" x="685" y="400">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="685" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id5"/>
+			<label kind="assignment" x="785" y="500">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id5"/>
+			<label kind="assignment" x="885" y="400">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id4"/>
+			<label kind="assignment" x="885" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="985" y="500">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="985" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="985" y="500">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="985" y="400">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id2"/>
+			<label kind="assignment" x="885" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id4"/>
+			<label kind="assignment" x="785" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id3"/>
+			<label kind="assignment" x="885" y="400">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id4"/>
+			<label kind="assignment" x="785" y="500">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id5"/>
+			<label kind="assignment" x="785" y="400">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id4"/>
+			<label kind="assignment" x="685" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="585" y="600">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="685" y="386">np1!</label>
+			<label kind="assignment" x="685" y="400">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="585" y="486">np1!</label>
+			<label kind="assignment" x="585" y="500">w=w+1</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id7"/>
+			<label kind="assignment" x="585" y="400">w=w+1</label>
+		</transition>
+	</template>
+	<system>ProcessWTS() = WTS();
+ProcessTA() = TA();
+system ProcessWTS, ProcessTA;</system>
+	<queries>
+	</queries>
+</nta>

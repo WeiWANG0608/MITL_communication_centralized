@@ -1,0 +1,4 @@
+ProcessWTS() = WTS();
+ProcessTA() = TA();
+system ProcessWTS, ProcessTA;&int w;
+&null#null&WTS#TA
